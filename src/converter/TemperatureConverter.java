@@ -15,19 +15,22 @@ static String inputByUserTemperature;
        return inputByUserTemperature = reader.readLine();
    }
 
-   void convert(String inputByUserTemperature) throws Exception {
+   public String convert(String inputByUserTemperature) throws Exception {
        double result;
+       String calculatedResult;
        double temperature = getParsedTemperature(inputByUserTemperature);
        if (getTypeOfTemperature(inputByUserTemperature) == true)
        {
            result = (temperature * 1.8) + 32;
-           System.out.println("from C => F " +  result);
+           calculatedResult  = "from C => F " +  result;
+
        }
        else
        {
           result = (temperature - 32)/1.8;
-           System.out.println("from F => C " +  result);
+           calculatedResult = "from F => C " +  result;
        }
+       return  calculatedResult;
    }
 
    boolean getTypeOfTemperature (String inputByUserTemperature) throws Exception {
