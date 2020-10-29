@@ -9,26 +9,43 @@ static String inputByUserTemperature;
     boolean splitInputIsCelsius;
     int userTemperature;
 
-  static String getTemperatureFromInput() throws IOException {
-      System.out.println("Provide temperature and after blank space specify 'C' for Celsius or 'F' for Fahrenheit");
-       BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-       return inputByUserTemperature = reader.readLine();
-   }
+    static String getTemperatureFromInput() throws IOException {
+        System.out.println( "Provide temperature and after blank space specify 'C' for Celsius or 'F' for Fahrenheit" );
+        BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
+        inputByUserTemperature = reader.readLine();
 
-   void convert(String inputByUserTemperature) throws Exception {
-       double result;
+        return inputByUserTemperature;
+    }
+
+   public String getConvertedValue(String inputByUserTemperature) throws Exception {
+       String calculatedResult;
        double temperature = getParsedTemperature(inputByUserTemperature);
-       if (getTypeOfTemperature(inputByUserTemperature) == true)
+       if (getTypeOfTemperature(inputByUserTemperature))
        {
-           result = (temperature * 1.8) + 32;
-           System.out.println("from C => F " +  result);
+           calculatedResult  = cToF( temperature );
        }
        else
        {
-          result = (temperature - 32)/1.8;
-           System.out.println("from F => C " +  result);
+           calculatedResult = fToC( temperature );
        }
+       return  calculatedResult;
    }
+
+   String cToF(double temperature)
+   {
+       double result = (temperature * 1.8) + 32;
+       String calculatedResultFarenheit = "from C => F " +  result;
+
+       return calculatedResultFarenheit;
+   }
+
+    String fToC(double temperature)
+    {
+        double result = (temperature - 32)/1.8;
+        String calculatedResultCelsius = "from F => C " +  result;
+
+        return calculatedResultCelsius;
+    }
 
    boolean getTypeOfTemperature (String inputByUserTemperature) throws Exception {
        if ((inputByUserTemperature != null) && (inputByUserTemperature.length() > 0)) {
